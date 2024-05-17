@@ -54,8 +54,17 @@ class Counter {
 }
 
 class Timer {
-  constructor() {
-    this.time = [8, 23, 55, 41];
+  constructor(targetDate) {
+    this.targetDate = new Date(targetDate);
+    
+    const now = new Date();
+    const difference = this.targetDate - now;
+
+    const seconds = Math.floor((difference / 1000) % 60);
+    const minutes = Math.floor((difference / 1000 / 60) % 60);
+    const hours = Math.floor((difference / 1000 / 60 / 60) % 24);
+    const days = Math.floor(difference / 1000 / 60 / 60 / 24);
+    this.time = [days, hours, minutes, seconds];
 
     this.seconds = new Counter(this.time[3], "seconds");
     this.minutes = new Counter(this.time[2], "minutes");
@@ -64,7 +73,7 @@ class Timer {
 
     setInterval(this.tick.bind(this), 1000);
   }
-
+  
   tick() {
     this.seconds.tick();
 
@@ -80,4 +89,6 @@ class Timer {
   }
 }
 
-const timer = new Timer();
+// Usage
+const targetDate = '2024-12-31T23:59:59'; // Set your target date here
+const timer = new Timer(targetDate);
