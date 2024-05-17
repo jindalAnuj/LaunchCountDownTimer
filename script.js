@@ -90,5 +90,5 @@ class Timer {
 }
 
 // Usage
-const targetDate = '2024-12-31T23:59:59'; // Set your target date here
+const targetDate = '2024-05-20T08:00:00'; // Set your target date here
 const timer = new Timer(targetDate);
